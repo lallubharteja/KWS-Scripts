@@ -10,35 +10,18 @@ import lzma
 import os
 import math
 
-def main(allowed_chars_file, model, btype):
+def main(allowed_chars_file, model):
 
     allowed_chars = {line.strip() for line in open(allowed_chars_file, encoding='utf-8') if len(line.strip()) == 1}
 
     model = morfessor.MorfessorIO().read_any_model(model)
 
-    between = " "
-    prefix = ""
-    suffix = ""
-
-    assert btype in {"aff", "wma", "suf", "pre"}
-    if btype == "wma":
-        between = " <w> "
-    if btype == "pre" or btype == "aff":
-        prefix ="+"
-    if btype == "suf" or btype == "aff":
-        suffix ="+"
-
     for line in sys.stdin:
         word = line.strip()
         parts = model.viterbi_segment(word)[0]
-        rparts = []
-        for p in parts:
-            if not all(c in allowed_chars for c in p):
-                p = '<UNK>'
-            rparts.append(p)
         print(word,end=' ')
-        print("{} {}".format(suffix,prefix).join(rparts).replace("+<unk>","<unk>").replace("<unk>+", "<unk>").replace("+<UNK>","<UNK>").replace("<UNK>+", "<UNK>").replace("<unk>", "<UNK>"))
+        print(" ".join(parts).replace("<unk>", "<UNK>"))
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    main(sys.argv[1],sys.argv[2],sys.argv[3])
+    main(sys.argv[1],sys.argv[2])

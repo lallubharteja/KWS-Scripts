@@ -34,11 +34,18 @@ def main(text, utype):
     m = {}
     for line in open(word_map, encoding='utf-8'):
         parts = line.strip().split()
+        parts_filtered = []
         if stype == "char":
             parts_filtered = [c if c in allowed_chars else '<UNK>' for c in parts[1:]]
-            m[parts[0]] = "{} {}".format(suffix,prefix).join(parts_filtered).replace("+<unk>","<unk>").replace("<unk>+", "<unk>").replace("+<UNK>","<UNK>").replace("<UNK>+", "<UNK>").replace("<unk>", "<UNK>")
+        elif stype == "morf":
+            for p in parts[1:]:
+                if not all(c in allowed_chars for c in p):
+                    p = '<UNK>'
+                parts_filtered.append(p)
         else:
-            m[parts[0]] = " ".join(parts[1:]).replace("+<unk>","<unk>").replace("<unk>+", "<unk>").replace("+<UNK>","<UNK>").replace("<UNK>+", "<UNK>").replace("<unk>", "<UNK>") 
+            raise Exception("subword {} type not defined.".format(stype))
+        
+        m[parts[0]] = "{} {}".format(suffix,prefix).join(parts_filtered).replace("+<unk>","<unk>").replace("<unk>+", "<unk>").replace("+<UNK>","<UNK>").replace("<UNK>+", "<UNK>").replace("<unk>", "<UNK>") 
         if "<UNK>" in m[parts[0]]:
             m[parts[0]] = "<UNK>"
 

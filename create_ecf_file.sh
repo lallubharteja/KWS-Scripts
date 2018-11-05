@@ -1,7 +1,15 @@
+#!/bin/bash
+
 if [ $# -ne 2 ]; then
-   echo "usage: kws_scripts/create_ecf_file.sh <wav file lists> <output file>"
+   echo "usage: kws_scripts/create_ecf_file.sh <wav file lists> <output location>"
    echo "e.g.:  kws_scripts/create_ecf_file.sh data/yle-dev-new/wav.scp data/kws_prep/ecf.xml"
+   echo "This script creates the experiment control file (ECF) required"
+   echo "by NIST F4DE's KWS evaluation."
    exit 1;
+fi
+
+if ! [ -x "$(command -v sox)" ]; then
+  echo "Please, install sox!"
 fi
 
 wav_files=$1
@@ -13,6 +21,7 @@ for f in $(cut -f2 -d' ' $wav_files); do
   echo '<excerpt audio_filename="'$f'" channel="1" tbeg="0.000" dur="'$dur'" source_type="splitcts"/>' >> $output_file
   total_duration=$(perl -E "say $total_duration + $dur")
 done
+
 echo '<ecf source_signal_duration="'$total_duration'" language="" version="Excluded noscore regions">' >> $output_file
 sed -i '1h;1d;$!H;$!d;G' $output_file
 echo "</ecf>" >> $output_file
