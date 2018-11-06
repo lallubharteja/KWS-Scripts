@@ -4,17 +4,8 @@ import logging
 import sys
 import os
 
-def parse_name(d):
-    base = os.path.basename(d)
-    assert base.startswith("kwlist")
-    parts = base.split('_')
-    btype = parts[1]
-    return btype
-
-def main(keywords):
-    btype = parse_name(keywords)
-    d=os.path.dirname(keywords)
-    parent_dir = os.path.dirname(d)
+def main(oov_file, btype):
+    parent_dir = os.path.dirname(oov_file)
     
     allowed_chars = {line.strip() for line in open(os.path.join(parent_dir, 'allowed_chars'), encoding='utf-8') if len(line.strip()) == 1}
 
@@ -30,7 +21,7 @@ def main(keywords):
     if btype == "suf" or btype == "aff":
         suffix ="+"
 
-    for line in open(os.path.join(parent_dir, 'oov.list'), encoding='utf-8'):
+    for line in open(oov_file, encoding='utf-8'):
         word = line.strip().split()
         parts = [c if c in allowed_chars else '<UNK>' for c in word[0]]
         print("{} {}".format(suffix,prefix).join(parts).replace("+<unk>","<unk>").replace("<unk>+", "<unk>").replace("+<UNK>","<UNK>").replace("<UNK>+", "<UNK>").replace("<unk>", "<UNK>"))
@@ -39,4 +30,10 @@ def main(keywords):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    main(sys.argv[1])
+    if len(sys.argv) != 2:
+        print("usage: python3 prep_kw_list.py <oov-file> <boundary-type> ")
+        print("e.g.: python3 prep_kw_list.py data/kws_prep/oov.list aff > data/kws_prep/dev.words")
+        print("This script converts a word to character sequences and append affixes as specified.")
+        print("And then prints this sequence to stdout.")
+        sys.exit(-1) 
+    main(sys.argv[1], sys.argv[2])

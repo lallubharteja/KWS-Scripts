@@ -2,11 +2,13 @@
 
 . common/slurm_dep_graph.sh
 
+model_id=morfessor_f2_a0.05_tokens_aff
+
 [ -f path.sh ] && . ./path.sh # source the path.
 . parse_options.sh || exit 1;
 
 model=
-model_id=morfessor_f2_a0.05_tokens_aff
+
 if [[ $model_id == char* ]]; then
   model=char
 elif [[ $model_id == morf* ]]; then

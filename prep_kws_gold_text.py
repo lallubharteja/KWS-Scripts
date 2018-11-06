@@ -4,14 +4,7 @@ import logging
 import sys
 import os
 
-def parse_name(utype):
-    parts = utype.split('_')
-    stype = parts[0]
-    btype = parts[1]
-    return stype,btype
-
-def main(text, utype):
-    stype, btype = parse_name(utype)
+def main(text, stype, btype):
     parent_dir = os.path.dirname(text)
     base = os.path.basename(text) 
     
@@ -63,4 +56,11 @@ def main(text, utype):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    main(sys.argv[1], sys.argv[2])
+    if len(sys.argv) != 3:
+        print("usage: python3 prep_kws_gold_text.py <text> <subword-id> <boundary-type-id> ")
+        print("e.g.: python3 prep_kws_gold_text.py data/kws_prep/dev.txt char aff")
+        print("This script converts a text file to character/morpheme sequences and")
+        print("append affixes as specified. And then writes this sequence to a file.")
+        print(" at <text-dir>/<subword-id>/text_only.")
+        sys.exit(-1)
+    main(sys.argv[1], sys.argv[2], sys.argv[3])

@@ -1,27 +1,35 @@
 #!/bin/bash
 
+kws_prep=data/kws_prep
+btype=aff
+morf_model=/scratch/work/psmit/chars-fin-2017/lm/all/morfessor_f2_a0.05_tokens/model.bin
 
-for lm in char morf; do 
+[ -f path.sh ] && . ./path.sh # source the path.
+echo $0 "$@"
+. utils/parse_options.sh
 
-  if [ ! -f data/kws_prep/$lm/kwlist_aff.txt ]; then
-    if [[ $lm == morf ]]; then
-      python3 kws_scripts/prep_morf_kw_list.py data/kws_prep/$lm/kwlist_aff /scratch/work/psmit/chars-fin-2017/lm/all/morfessor_f2_a0.05_tokens/model.bin |  grep -v "<UNK>" > data/kws_prep/$lm/kwlist_aff.tmp 
-      cat data/kws_prep/$lm/kwlist_aff.tmp | awk '{if (length() > 1) {print $0}}'  > data/kws_prep/$lm/kwlist_aff.txt
+#create kws word lists
+for stype in char morf; do 
+
+  if [ ! -f $kws_prep/$stype/kwlist_$btype.txt ]; then
+    if [[ $stype == morf ]]; then
+      python3 kws_scripts/prep_morf_kw_list.py $kws_prep/oov.list $btype $morf_model |  grep -v "<UNK>" > $kws_prep/$stype/kwlist_$btype.tmp 
+      cat $kws_prep/$stype/kwlist_$btype.tmp | awk '{if (length() > 1) {print $0}}'  > $kws_prep/$stype/kwlist_$btype.txt
     else
-      python3 kws_scripts/prep_kw_list.py data/kws_prep/$lm/kwlist_aff |  grep -v "<UNK>" > data/kws_prep/$lm/kwlist_aff.tmp  
-      cat data/kws_prep/$lm/kwlist_aff.tmp | awk '{if (NF > 1) {print $0}}'  > data/kws_prep/$lm/kwlist_aff.txt
+      python3 kws_scripts/prep_kw_list.py $kws_prep/oov.list $btype |  grep -v "<UNK>" > $kws_prep/$stype/kwlist_$btype.tmp  
+      cat $kws_prep/$stype/kwlist_$btype.tmp | awk '{if (NF > 1) {print $0}}'  > $kws_prep/$stype/kwlist_$btype.txt
     fi        
   fi
 
-  if [ ! -f data/kws_prep/$lm/kwlist_aff.xml ]; then
-    echo '<kwlist ecf_filename="ecf.xml" language="Finnish" encoding="UTF-8" compareNormalize="" version="Example keywords">' > data/kws_prep/$lm/kwlist_aff.xml
+  if [ ! -f $kws_prep/$stype/kwlist_$btype.xml ]; then
+    echo '<kwlist ecf_filename="ecf.xml" language="Finnish" encoding="UTF-8" compareNormalize="" version="Example keywords">' > $kws_prep/$stype/kwlist_$btype.xml
     n=1
     while IFS='' read -r line || [[ -n "$line" ]]; do
-      echo '  <kw kwid="'$n'">' >> data/kws_prep/$lm/kwlist_aff.xml
-      echo '    <kwtext>'$line'</kwtext>' >> data/kws_prep/$lm/kwlist_aff.xml
-      echo '  </kw>' >> data/kws_prep/$lm/kwlist_aff.xml
+      echo '  <kw kwid="'$n'">' >> $kws_prep/$stype/kwlist_$btype.xml
+      echo '    <kwtext>'$line'</kwtext>' >> $kws_prep/$stype/kwlist_$btype.xml
+      echo '  </kw>' >> $kws_prep/$stype/kwlist_$btype.xml
       n=`expr $n + 1` 
-    done < data/kws_prep/$lm/kwlist_aff.txt
-    echo '</kwlist>' >> data/kws_prep/$lm/kwlist_aff.xml
+    done < $kws_prep/$stype/kwlist_$btype.txt
+    echo '</kwlist>' >> $kws_prep/$stype/kwlist_$btype.xml
   fi
 done

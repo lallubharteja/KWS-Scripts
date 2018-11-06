@@ -1,7 +1,9 @@
 #!/bin/bash
 
+#Run jobs to create character- and morpheme-based keyword list
+
 if [ ! -f data/kws_prep/char/kwlist_aff.txt ] ;then
-  python3 kws_scripts/prep_kw_list.py data/kws_prep/char/kwlist_aff > data/kws_prep/char/kwlist_aff.txt
+  python3 kws_scripts/prep_kw_list.py data/kws_prep/oov.list aff > data/kws_prep/char/kwlist_aff.txt
 fi
 
 if [ ! -f data/kws_prep/morf/kwlist_aff.txt ]; then 

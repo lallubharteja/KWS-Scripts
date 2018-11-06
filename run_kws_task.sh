@@ -44,6 +44,12 @@ for lm in v; do #lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.7 lin.k
   lang_dir="/scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/data/langs/$model_id/$lm"
   decode_dir="/scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/exp/decode_yle-dev-new_${model_id}_${lm}_rnn_a_w1"
 
+  #removing the word_boundary.int to use align_lexicon.int 
+  #instead while creating kws indices. In our setup, we 
+  #assume that kaldi script steps/make_index.sh uses an 
+  #extra flag "--output-if-empty=true" when using the 
+  #command "lattice-align-words-lexicon". A modified 
+  #version is provided in this directory for reference.
   rm -f /scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/data/langs/$model_id/$lm/phones/word_boundary.int
 
   if [ ! -f $decode_dir/.kws.done ] && [ ! -f $decode_dir/.done.kws ]; then

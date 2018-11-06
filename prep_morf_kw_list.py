@@ -10,17 +10,8 @@ import lzma
 import os
 import math
 
-def parse_name(d):
-    base = os.path.basename(d)
-    assert base.startswith("kwlist")
-    parts = base.split('_')
-    btype = parts[1]
-    return btype
-
-def main(keywords, model):
-    btype = parse_name(keywords)
-    d=os.path.dirname(keywords)
-    parent_dir = os.path.dirname(d)
+def main(oov_file, btype, model):
+    parent_dir = os.path.dirname(oov_file)
 
     allowed_chars = {line.strip() for line in open(os.path.join(parent_dir, 'allowed_chars'), encoding='utf-8') if len(line.strip()) == 1}
     
@@ -38,7 +29,7 @@ def main(keywords, model):
     if btype == "suf" or btype == "aff":
         suffix ="+"
 
-    for line in open(os.path.join(parent_dir, 'oov.list'), encoding='utf-8'):
+    for line in open(oov_file, encoding='utf-8'):
         word = line.strip()
         parts = model.viterbi_segment(word)[0]
         rparts = []
@@ -51,5 +42,11 @@ def main(keywords, model):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    main(sys.argv[1],sys.argv[2])
+    if len(sys.argv) != 3:
+        print("usage: python3 prep_morf_kw_list.py <oov-file> <boundary-type> <morfessor-model>")
+        print("e.g.: python3 prep_morf_kw_list.py data/kws_prep/oov.list aff data/kws_prep/morf/model.bin > data/kws_prep/morf/kwlist_aff.txt")
+        print("This script converts a word to morpheme sequences and append affixes as specified.")
+        print("And then prints this sequence to stdout.")
+        sys.exit(-1)
+    main(sys.argv[1],sys.argv[2],sys.argv[3])
 
