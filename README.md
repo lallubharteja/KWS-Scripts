@@ -53,6 +53,9 @@ Bibtex entry for citing:
 
 # References
 [1] https://github.com/aalto-speech/subword-kaldi
+
 [2] https://github.com/psmit/kaldi-recipes
+
 [3] http://kaldi-asr.org/doc/kws.html
+
 [4] https://www.nist.gov/sites/default/files/documents/itl/iad/mig/OpenKWS13-EvalPlan.pdf
