@@ -39,6 +39,7 @@ Finally the keyword search can be run using `run_kws_task.sh`. This script speci
 
 # Citing
 Bibtex entry for citing: 
+```
 @misc{SubwordKWS18,
   author = {Mittul Singh},
   title = {Subword ASR based Keyword Search Recipe},
@@ -47,6 +48,7 @@ Bibtex entry for citing:
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/lallubharteja/kws_scripts}}
 }
+```
 
 
 # References
