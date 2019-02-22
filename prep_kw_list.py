@@ -9,13 +9,10 @@ def main(oov_file, btype):
     
     allowed_chars = {line.strip() for line in open(os.path.join(parent_dir, 'allowed_chars'), encoding='utf-8') if len(line.strip()) == 1}
 
-    between = " "
     prefix = ""
     suffix = ""
    
     assert btype in {"aff", "wma", "suf", "pre"}
-    if btype == "wma":
-        between = " <w> "
     if btype == "pre" or btype == "aff":
         prefix ="+"
     if btype == "suf" or btype == "aff":
@@ -30,7 +27,7 @@ def main(oov_file, btype):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         print("usage: python3 prep_kw_list.py <oov-file> <boundary-type> ")
         print("e.g.: python3 prep_kw_list.py data/kws_prep/oov.list aff > data/kws_prep/dev.words")
         print("This script converts a word to character sequences and append affixes as specified.")

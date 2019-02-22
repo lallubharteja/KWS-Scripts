@@ -8,16 +8,19 @@ if [ $# -ne 2 ]; then
    exit 1;
 fi
 
-if ! [ -x "$(command -v sox)" ]; then
-  echo "Please, install sox!"
-fi
+. ./path.sh
 
 wav_files=$1
 output_file=$2
 total_duration=0
 
-for f in $(cut -f2 -d' ' $wav_files); do 
-  dur=$(sox $f -n stat 2>&1 | sed -n 's#^Length (seconds):[^0-9]*\([0-9.]*\)$#\1#p')
+outdir=$(dirname $output_file)
+
+wav-to-duration scp:$wav_files ark,t:- > $outdir/dur.txt 
+
+for id in $(cut -f1 -d' ' $wav_files); do
+  dur=$(grep $id $outdir/dur.txt| cut -f2 -d' ')
+  f=$(grep $id $wav_files| cut -f2 -d' ')
   echo '<excerpt audio_filename="'$f'" channel="1" tbeg="0.000" dur="'$dur'" source_type="splitcts"/>' >> $output_file
   total_duration=$(perl -E "say $total_duration + $dur")
 done

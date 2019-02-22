@@ -42,7 +42,8 @@ def main(oov_file, btype, model):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
+        print("%d arguments passes" % len(sys.argv))
         print("usage: python3 prep_morf_kw_list.py <oov-file> <boundary-type> <morfessor-model>")
         print("e.g.: python3 prep_morf_kw_list.py data/kws_prep/oov.list aff data/kws_prep/morf/model.bin > data/kws_prep/morf/kwlist_aff.txt")
         print("This script converts a word to morpheme sequences and append affixes as specified.")

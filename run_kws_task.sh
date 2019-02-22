@@ -39,10 +39,10 @@ fi
 
 data_dir="data/yle-dev-new"
 
-for lm in v; do #lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.7 lin.knv.rnnvk_sami.p0.1.w0.9 lin.knv.rnnvk_sami.p0.1.w0.95 ; do #rnnvk_sami_p0.1; do #lin.knv.rnnvk_sami.p0.001.w0.5 lin.knv.rnnvk_sami.p0.001.w0.7 lin.knv.rnnvk_sami.p0.001.w0.9 lin.knv.rnnvk_sami.p0.001.w0.95 lin.knv.rnnvk_sami.p0.01.w0.5 lin.knv.rnnvk_sami.p0.01.w0.7 lin.knv.rnnvk_sami.p0.01.w0.9 lin.knv.rnnvk_sami.p0.01.w0.95 lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.7 lin.knv.rnnvk_sami.p0.1.w0.9 lin.knv.rnnvk_sami.p0.1.w0.95 rnnvk_sami_p0.001 rnnvk_sami_p0.01 rnnvk_sami_p0.1; do
+for lm in lin.knv.rnnvk_topk3.n5.p0.1.w0.5 ; do # lin.knv.rnnvk_sami.n10.p0.001.w0.5 lin.knv.rnnvk_sami.n11.p0.001.w0.5 lin.knv.rnnvk_sami.n12.p0.001.w0.5 lin.knv.rnnvk_sami.n13.p0.001.w0.5 lin.knv.rnnvk_sami.n14.p0.001.w0.5 lin.knv.rnnvk_sami.n15.p0.001.w0.5 lin.knv.rnnvk_sami.n16.p0.001.w0.5 lin.knv.rnnvk_sami.n17.p0.001.w0.5 lin.knv.rnnvk_sami.n18.p0.001.w0.5 lin.knv.rnnvk_sami.n19.p0.001.w0.5 lin.knv.rnnvk_sami.n20.p0.001.w0.5 lin.knv.rnnvk_sami.n21.p0.001.w0.5 lin.knv.rnnvk_sami.n22.p0.001.w0.5 lin.knv.rnnvk_sami.n23.p0.001.w0.5 lin.knv.rnnvk_sami.n24.p0.001.w0.5 lin.knv.rnnvk_sami.n25.p0.001.w0.5 lin.knv.rnnvk_sami.n26.p0.001.w0.5 lin.knv.rnnvk_sami.n27.p0.001.w0.5 lin.knv.rnnvk_sami.n28.p0.001.w0.5 lin.knv.rnnvk_sami.n5.p0.001.w0.5 lin.knv.rnnvk_sami.n6.p0.001.w0.5 lin.knv.rnnvk_sami.n7.p0.001.w0.5 lin.knv.rnnvk_sami.n8.p0.001.w0.5 lin.knv.rnnvk_sami.n9.p0.001.w0.5; do # lin.knv.rnn5.p0.011.w0.5 lin.knv.rnn5.p0.011.w0.55 lin.knv.rnn5.p0.011.w0.6 lin.knv.rnn5.p0.011.w0.65 lin.knv.rnn5.p0.011.w0.7 lin.knv.rnn5.p0.011.w0.75 lin.knv.rnn5.p0.011.w0.8 lin.knv.rnn5.p0.011.w0.85 lin.knv.rnn5.p0.011.w0.9 lin.knv.rnn5.p0.011.w0.95 lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.55 lin.knv.rnnvk_sami.p0.1.w0.6 lin.knv.rnnvk_sami.p0.1.w0.65 lin.knv.rnnvk_sami.p0.1.w0.7 lin.knv.rnnvk_sami.p0.1.w0.75 lin.knv.rnnvk_sami.p0.1.w0.8 lin.knv.rnnvk_sami.p0.1.w0.85 lin.knv.rnnvk_sami.p0.1.w0.9 lin.knv.rnnvk_sami.p0.1.w0.95; do #rnn5_p0.011 lin.knv.rnn5.p0.011.w0.5 lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.7 lin.knv.rnnvk_sami.p0.1.w0.9 lin.knv.rnnvk_sami.p0.1.w0.95 ; do #rnnvk_sami_p0.1; do #lin.knv.rnnvk_sami.p0.001.w0.5 lin.knv.rnnvk_sami.p0.001.w0.7 lin.knv.rnnvk_sami.p0.001.w0.9 lin.knv.rnnvk_sami.p0.001.w0.95 lin.knv.rnnvk_sami.p0.01.w0.5 lin.knv.rnnvk_sami.p0.01.w0.7 lin.knv.rnnvk_sami.p0.01.w0.9 lin.knv.rnnvk_sami.p0.01.w0.95 lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.7 lin.knv.rnnvk_sami.p0.1.w0.9 lin.knv.rnnvk_sami.p0.1.w0.95 rnnvk_sami_p0.001 rnnvk_sami_p0.01 rnnvk_sami_p0.1; do
 
   lang_dir="/scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/data/langs/$model_id/$lm"
-  decode_dir="/scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/exp/decode_yle-dev-new_${model_id}_${lm}_rnn_a_w1"
+  decode_dir="/scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/exp/decode_yle-dev-new_${model_id}_${lm}"
 
   #removing the word_boundary.int to use align_lexicon.int 
   #instead while creating kws indices. In our setup, we 
@@ -53,7 +53,7 @@ for lm in v; do #lin.knv.rnnvk_sami.p0.1.w0.5 lin.knv.rnnvk_sami.p0.1.w0.7 lin.k
   rm -f /scratch/elec/puhe/p/singhm2/rw-fin-2018/lms/data/langs/$model_id/$lm/phones/word_boundary.int
 
   if [ ! -f $decode_dir/.kws.done ] && [ ! -f $decode_dir/.done.kws ]; then
-    job kws_search 100 36 NONE -- local_kws/kws_search.sh --cmd "$cmd" --extraid $model --max-states ${max_states} --min-lmwt ${min_lmwt} --max-lmwt ${max_lmwt} --skip-scoring $skip_scoring --indices-dir $decode_dir/kws_indices $lang_dir $data_dir $decode_dir
+    job kws_search 50 36 NONE -- local_kws/kws_search.sh --cmd "$cmd" --extraid $model --max-states ${max_states} --min-lmwt ${min_lmwt} --max-lmwt ${max_lmwt} --skip-scoring $skip_scoring --indices-dir $decode_dir/kws_indices $lang_dir $data_dir $decode_dir
   fi
 
 done

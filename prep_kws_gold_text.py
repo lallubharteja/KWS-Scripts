@@ -56,7 +56,7 @@ def main(text, stype, btype):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print("usage: python3 prep_kws_gold_text.py <text> <subword-id> <boundary-type-id> ")
         print("e.g.: python3 prep_kws_gold_text.py data/kws_prep/dev.txt char aff")
         print("This script converts a text file to character/morpheme sequences and")

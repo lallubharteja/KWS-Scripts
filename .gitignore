@@ -1,1 +1,4 @@
 subword_analysis.sh
+print_best_atwv.sh
+replace_unks_in_word_rttm.py
+run_fuzzy_search_setup.sh

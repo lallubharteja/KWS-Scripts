@@ -3,10 +3,9 @@ Recipe to setup and run Kaldi's keyword search system for character- and morphem
 
 ## Prerequisites
 You will need the latest version of the following tools:
-- kaldi toolkit - https://github.com/kaldi-asr/kaldi
+- kaldi toolkit - https://github.com/kaldi-asr/kaldi. Also, make sure kaldi c++ tools are in your path 
 - python3 
 - NIST F4DE toolkit - https://github.com/usnistgov/F4DE
-- sox
 - Symlinks: To run the scripts in this recipe, we assume that the following symlinks exist in your experiments directory
  - `steps` is linked to `kaldi-trunk/egs/wsj/s5/steps`
  - `utils` is linked to `kaldi-trunk/egs/wsj/s5/utils`
