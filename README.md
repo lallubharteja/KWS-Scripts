@@ -1,4 +1,4 @@
-# kws_scripts
+# KWS Scripts
 Recipe to setup and run Kaldi's keyword search system for character- and morpheme-based ASR. We create these subword ASR systems using the kaldi recipe scripts available at [1,2]. These systems are then used to setup the keyword search task using the following scripts. Note, that some these scripts are specific to our system and will need to modified suitably for your own systems.
 
 ## Prerequisites
