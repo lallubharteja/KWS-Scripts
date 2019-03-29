@@ -1,6 +1,8 @@
 # KWS Scripts
 Recipe to setup and run Kaldi's keyword search system for character- and morpheme-based ASR. We create these subword ASR systems using the kaldi recipe scripts available at [1,2]. These systems are then used to setup the keyword search task using the following scripts. Note, that some these scripts are specific to our system and will need to modified suitably for your own systems.
 
+We also provide Arabic and Finnish OOV lists to setup Keyword Search tasks for both these languages.
+
 ## Prerequisites
 You will need the latest version of the following tools:
 - kaldi toolkit - https://github.com/kaldi-asr/kaldi. Also, make sure kaldi c++ tools are in your path 
