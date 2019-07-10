@@ -41,15 +41,16 @@ Finally the keyword search can be run using `run_kws_task.sh`. This script speci
 # Citing
 Bibtex entry for citing: 
 ```
-@misc{SubwordKWS18,
-  author = {Mittul Singh},
-  title = {Subword ASR based Keyword Search Recipe},
-  year = {2018},
-  publisher = {GitHub},
-  journal = {GitHub repository},
+@inproceedings{SubwordKWS18,
+  author = {Mittul Singh, Sami Virpioja, Peter Smit, Mikko Kurimo},
+  title = {Subword RNNLM Approximations for Out-Of-Vocabulary Keyword Search},
+  year = {2019},
+  pages = {to appear},
+  booktitle = {INTERSPEECH},
   howpublished = {\url{https://github.com/lallubharteja/kws_scripts}}
 }
 ```
+Of course cite Kaldi Toolkit for these scripts as well.
 
 
 # References
