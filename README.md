@@ -41,7 +41,7 @@ Finally the keyword search can be run using `run_kws_task.sh`. This script speci
 # Citing
 Bibtex entry for citing: 
 ```
-@inproceedings{SubwordKWS18,
+@inproceedings{SubwordKWS19,
   author = {Mittul Singh, Sami Virpioja, Peter Smit, Mikko Kurimo},
   title = {Subword RNNLM Approximations for Out-Of-Vocabulary Keyword Search},
   year = {2019},
