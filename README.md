@@ -38,7 +38,7 @@ To setup the keyword search data, you will need to perform a decoding pass with 
 ## Running KWS
 Finally the keyword search can be run using `run_kws_task.sh`. This script specifies the data and other requirements for running the KWS for subword ASR setup.
 
-#OOV Lists
+# OOV Lists
 Two oov lists are contained in this repository:
 - `oov_arabic_buckwalter.keywords`: list of MGB3 Arabic OOV words in Buckwalter format
 - `oov_finnish.keywords`: list of Finnish OOV words
