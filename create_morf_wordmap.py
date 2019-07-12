@@ -4,7 +4,6 @@ from __future__ import print_function
 
 import morfessor
 import sys
-import collections
 import logging
 import lzma
 import os
@@ -24,7 +23,7 @@ def main(allowed_chars_file, model):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         print("usage: python3 create_morf_wordmap.py <allowe-characters-file> <morfessor-model> < word-list")
         print("e.g.: python3 create_morf_wordmap.py data/kws_prep/allowed_chars data/kws_prep/morf/model.bin < data/kws_prep/dev.words")
         print("This script prints a stdout word and its morpheme constituents according to the morfessor.")
