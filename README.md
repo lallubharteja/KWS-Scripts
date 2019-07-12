@@ -53,8 +53,7 @@ Bibtex entry for citing:
   title = {Subword RNNLM Approximations for Out-Of-Vocabulary Keyword Search},
   year = {2019},
   pages = {to appear},
-  booktitle = {INTERSPEECH},
-  howpublished = {\url{https://github.com/lallubharteja/kws_scripts}}
+  booktitle = {INTERSPEECH}
 }
 ```
 Of course cite Kaldi Toolkit for these scripts as well.
